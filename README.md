@@ -7,13 +7,13 @@ Cordova Plugin to automatically update your Cordova iOS app, given an externally
 #### Latest published version on npm (with Cordova CLI >= 5.0.0)
 
 ```
-cordova plugin add cordova-plugin-dynamic-update-ios
+cordova plugin add cordova-plugin-yypay
 ```
 
 #### Latest version from GitHub
 
 ```
-cordova plugin add https://github.com/daomul/cordova-plugin-dynamic-update-ios.git
+cordova plugin add https://github.com/daomul/cordova-plugin-yypay.git
 ```
 
 ## Usage
@@ -29,20 +29,12 @@ Ensure you use the plugin after your deviceready event has been fired.
 Downloads the zip file of your update.
 
 ```js
-dynamicupdate.download(
-     function (result) {
-       alert(result);
-     },
-     function (error) {
-        alert("Scanning failed: " + error);
-     },
-     "http://files.cnblogs.com/files/daomul/update.zip"
-);
+
 ```
 
 ## Platforms
 
-iOS only. Android maybe u can call : https://github.com/leecrossley/cordova-plugin-dynamic-update.
+iOS  Android
 
 ## License
 

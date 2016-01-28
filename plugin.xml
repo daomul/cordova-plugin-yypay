@@ -27,8 +27,8 @@
 　　　　　<source-file src="src/ios/YYPay.mm" />
 　　　　　<header-file src="src/ios/YYPay.h" />
 　　　　　<!-- 引用插件的需要支持的框架，没有引用平台可以注释调 -->
-　　　　　<framework src="libPaymentControl.a" weak="true" />
-　　　　　<framework src="libUPPayPlugin.a" weak="true" />
+　　　　　<source-file src="libPaymentControl.a" framework="true" />
+　　　　　<source-file src="libUPPayPlugin.a" framework="true" />
 　　　　　<framework src="QuartzCore.framework" weak="true" />
 　　　　　<framework src="Security.framework" weak="true" />
 　　</platform>
