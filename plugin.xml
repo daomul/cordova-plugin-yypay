@@ -29,5 +29,7 @@
 　　　　　<!-- 引用插件的需要支持的框架，没有引用平台可以注释调 -->
 　　　　　<framework src="libPaymentControl.a" weak="true" />
 　　　　　<framework src="libUPPayPlugin.a" weak="true" />
+　　　　　<framework src="QuartzCore.framework" weak="true" />
+　　　　　<framework src="Security.framework" weak="true" />
 　　</platform>
 </plugin>
