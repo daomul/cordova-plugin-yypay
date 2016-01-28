@@ -1,0 +1,36 @@
+{
+  "name": "cordova-plugin-yypay",
+  "version": "0.0.1",
+  "author": "Axiba (daomul)",
+  "description": "Cordova Plugin to yypay.",
+  "cordova": {
+    "id": "cordova-plugin-yypay",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daomul/cordova-plugin-yypay.git"
+  },
+  "keywords": [
+    "cordova",
+    "yonyou",
+    "pay",
+    "www",
+    "public",
+    "cordova-ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=5.0.0"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daomul/cordova-plugin-yypay/issues"
+  },
+  "homepage": "https://github.com/daomul/cordova-plugin-yypay#readme"
+}

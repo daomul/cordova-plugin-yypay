@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-yypay" version="0.0.1"><!-- 插件在工程中的唯一标识 --><!-- 插件版本 -->
+    <name>yypay</name>
+    <author>daomul (http://www.jianshu.com/users/1967b163cb61/latest_articles)</author>
+    <description>Cordova Plugin to do paything</description>
+    <keywords>union pay cordova</keywords>
+    <engines>
+        <engine name="cordova" version=">=5.0.0" /><!-- 插件最低支持的Corodva框架版本，根据实际需求，如第一次可以使用默认的 -->
+    </engines>
+    <js-module src="www/yypay.js" name="yypay"><!-- 要链接的JS文件，一个文件使用一组<js-module> -->
+        <clobbers target="yypay" />
+    </js-module>
+
+    <!-- 根据不同平台配置不同的原生源文件，下面以IOS为例 -->
+    <platform name="ios">
+　　　　　<config-file target="config.xml" parent="/*">
+　　　　　　　<!-- 替换插件类名 -->
+　　　　　　　<feature name="yypay">
+　　　　　　　　　<param name="ios-package" value="yypay"/>
+　　　　　　　</feature>
+　　　　　</config-file>
+    　　　<!-- 引用插件的源文件，按照这种格式把所有的原生类的文件引入 -->
+　　　　　<header-file src="src/ios/UPPayPluginDelegate.h" />
+　　　　　<header-file src="src/ios/UPPayPlugin.h" />
+　　　　　<header-file src="src/ios/UPPaymentControl.h" />
+　　　　　<source-file src="src/ios/YYPay.mm" />
+　　　　　<header-file src="src/ios/YYPay.h" />
+　　　　　<!-- 引用插件的需要支持的框架，没有引用平台可以注释调 -->
+　　　　　<framework src="libPaymentControl.a" weak="true" />
+　　　　　<framework src="libUPPayPlugin.a" weak="true" />
+　　</platform>
+</plugin>
