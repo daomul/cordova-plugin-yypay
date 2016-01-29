@@ -21,14 +21,11 @@
 　　　　　　　</feature>
 　　　　　</config-file>
     　　　<!-- 引用插件的源文件，按照这种格式把所有的原生类的文件引入 -->
-　　　　　<header-file src="src/ios/UPPayPluginDelegate.h" />
-　　　　　<header-file src="src/ios/UPPayPlugin.h" />
 　　　　　<header-file src="src/ios/UPPaymentControl.h" />
 　　　　　<source-file src="src/ios/YYPay.mm" />
 　　　　　<header-file src="src/ios/YYPay.h" />
 　　　　　<!-- 引用插件的需要支持的框架，没有引用平台可以注释调 -->
 　　　　　<source-file src="src/ios/libPaymentControl.a" framework="true" />
-　　　　　<source-file src="src/ios/libUPPayPlugin.a" framework="true" />
 　　　　　<framework src="QuartzCore.framework" weak="true" />
 　　　　　<framework src="Security.framework" weak="true" />
 　　</platform>
