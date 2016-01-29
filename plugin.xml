@@ -28,5 +28,7 @@
 　　　　　<source-file src="src/ios/libPaymentControl.a" framework="true" />
 　　　　　<framework src="QuartzCore.framework" weak="true" />
 　　　　　<framework src="Security.framework" weak="true" />
+　　　　　<framework src="SystemConfiguration.framework" weak="true" />
+　　　　　<framework src="CFNetwork.framework" weak="true" />
 　　</platform>
 </plugin>
