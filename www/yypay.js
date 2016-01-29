@@ -19,4 +19,4 @@ module.exports = new Yypay();
 
 if(!window.plugins) window.plugins = {};
 
-if (!window.plugins.yypay) window.plugins.yypay = cordova.require("cordova/plugins/yypay");
+if (!window.plugins.yypay) window.plugins.yypay = cordova.require("cordova-plugin-yypay.yypay");

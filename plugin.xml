@@ -16,8 +16,8 @@
     <platform name="ios">
 　　　　　<config-file target="config.xml" parent="/*">
 　　　　　　　<!-- 替换插件类名 -->
-　　　　　　　<feature name="yypay">
-　　　　　　　　　<param name="ios-package" value="yypay"/>
+　　　　　　　<feature name="YYPay">
+　　　　　　　　　<param name="ios-package" value="YYPay"/>
 　　　　　　　</feature>
 　　　　　</config-file>
     　　　<!-- 引用插件的源文件，按照这种格式把所有的原生类的文件引入 -->
