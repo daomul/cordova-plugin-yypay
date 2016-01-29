@@ -16,7 +16,3 @@ yypay.prototype.pay = function (paymentInfo,paymentInfo2, onSuccess, onError) {
 
 //Cordova框架加载时初始化该类的对象。
 module.exports = new yypay();
-
-if(!cordova.plugins) cordova.plugins = {};
-
-if (!cordova.plugins.yypay) cordova.plugins.yypay = cordova.require("cordova-plugin-yypay.yypay");
