@@ -30,7 +30,7 @@
 #define kResult           @"支付结果：%@"
 
 
-#define kMode_Development             @"01"
+#define kMode_Development             @"201601271431425671858"
 #define kURL_TN_Normal                @"http://101.231.204.84:8091/sim/getacptn"
 #define kURL_TN_Configure             @"http://101.231.204.84:8091/sim/app.jsp?user=123456789"
 
@@ -43,18 +43,14 @@
     NSMutableData* _responseData;
     CGFloat _maxWidth;
     CGFloat _maxHeight;
-    
+
     UITextField *_urlField;
     UITextField *_modeField;
     UITextField *_curField;
 }
 
 @property(nonatomic, copy)NSString *tnMode;
-
-- (void)showAlertWait;
-- (void)showAlertMessage:(NSString*)msg;
-- (void)hideAlert;
-
+@property (nonatomic, copy) NSString *currentCallbackId;
 
 @end
 
@@ -65,65 +61,74 @@
 - (void)dealloc
 {
     self.tnMode = nil;
-    
+
 }
 
 #pragma mark -- CDVplugin Delegate
 - (void) pay:(CDVInvokedUrlCommand*)command
 {
-    NSString* tn = kMode_Development;
-    if (tn != nil && tn.length > 0)
+    //拿到传入的参数
+    _currentCallbackId = command.callbackId;
+    NSMutableDictionary* pathArr = [command argumentAtIndex:0 withDefault:nil];
+    NSString *tradeCode = [pathArr objectForKey:@"tradeCode"];
+    NSString *payCode = [pathArr objectForKey:@"payCode"] ? [pathArr objectForKey:@"payCode"] : @"01";
+
+    if (tradeCode != nil && tradeCode.length > 0)
     {
-        
-        NSLog(@"tn=%@",tn);
+        NSLog(@"tn=%@",tradeCode);
         UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 //        id currentController = [[[delegate window] rootViewController] visibleViewController];
-        [[UPPaymentControl defaultControl] startPay:tn fromScheme:@"UPPayDemo" mode:self.tnMode viewController:rootViewController];
-        
+        [[UPPaymentControl defaultControl] startPay:tradeCode fromScheme:@"975052664" mode:payCode viewController:rootViewController];
+
+        //监听通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UPPayPluginResultBack:) name:@"UPPaymentDidBackNotification" object:nil];
+
+
+    }else {
+        NSMutableDictionary *result = [NSMutableDictionary dictionary];
+        result[@"code"] = @"-1";
+        result[@"msg"] = @"支付失败";
+        [self failWithCallbackID:result];
     }
 }
 
 #pragma mark UPPayPluginResult
-- (void)UPPayPluginResult:(NSString *)result
+- (void)UPPayPluginResultBack:(NSNotification *)notification
 {
-    NSString* msg = [NSString stringWithFormat:kResult, result];
-    [self showAlertMessage:msg];
-}
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
 
-#pragma mark - Alert
-
-- (void)showAlertWait
-{
-    [self hideAlert];
-    _alertView = [[UIAlertView alloc] initWithTitle:kWaiting message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
-    [_alertView show];
-    UIActivityIndicatorView* aiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    aiv.center = CGPointMake(_alertView.frame.size.width / 2.0f - 15, _alertView.frame.size.height / 2.0f + 10 );
-    [aiv startAnimating];
-    [_alertView addSubview:aiv];
-    
-}
-
-- (void)showAlertMessage:(NSString*)msg
-{
-    [self hideAlert];
-    _alertView = [[UIAlertView alloc] initWithTitle:kNote message:msg delegate:self cancelButtonTitle:kConfirm otherButtonTitles:nil, nil];
-    
-}
-- (void)hideAlert
-{
-    if (_alertView != nil)
-    {
-        [_alertView dismissWithClickedButtonIndex:0 animated:NO];
-        _alertView = nil;
+    NSString *resultCode = notification.userInfo[@"code"];
+    if ([resultCode isEqualToString:@"success"]) {
+        result[@"code"] = 0;
+        result[@"msg"] = @"支付成功";
+        [self successWithCallbackID:result];
+    }else if([resultCode isEqualToString:@"fail"]) {
+        //交易失败
+        result[@"code"] = @"-1";
+        result[@"msg"] = @"支付失败";
+        [self failWithCallbackID:result];
+    }
+    else if([resultCode isEqualToString:@"cancel"]) {
+        //交易取消
+        result[@"code"] = @"-2";
+        result[@"msg"] = @"支付取消";
+        [self failWithCallbackID:result];
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+#pragma mark -- callBack delegate
+
+- (void)successWithCallbackID:(NSDictionary *)message
 {
-    _alertView = nil;
+    CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:message];
+    [self.commandDelegate sendPluginResult:commandResult callbackId:_currentCallbackId];
+}
+
+- (void)failWithCallbackID:(NSDictionary *)message
+{
+    CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:message];
+    [self.commandDelegate sendPluginResult:commandResult callbackId:_currentCallbackId];
 }
 
 
 @end
-
