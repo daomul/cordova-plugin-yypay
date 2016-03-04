@@ -1,4 +1,4 @@
-cordova.define("cordova-plugin-yypay.yypay", function(require, exports, module) { /**
+/**
 * 调用OC的JS层代码，在插件的JS代码中可以实现自己的逻辑代码，对外只提供借口方法
 */
 var exec = require("cordova/exec");
@@ -17,7 +17,6 @@ yypay.prototype.pay = function (tradecode,mode, onSuccess, onError) {
 //Cordova框架加载时初始化该类的对象。
 module.exports = new yypay();
 
-});
-// if(!cordova.plugins) cordova.plugins = {};
-//
-// if (!cordova.plugins.yypay) cordova.plugins.yypay = cordova.require("cordova-plugin-yypay.yypay");
+if(!cordova.plugins) cordova.plugins = {};
+
+if (!cordova.plugins.yypay) cordova.plugins.yypay = cordova.require("cordova-plugin-yypay.yypay");

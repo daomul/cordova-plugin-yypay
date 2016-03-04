@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"
-        id="cordova-plugin-yypay" version="0.0.1"><!-- 插件在工程中的唯一标识 --><!-- 插件版本 -->
+        id="cordova-plugin-yypay" version="0.0.2"><!-- 插件在工程中的唯一标识 --><!-- 插件版本 -->
     <name>yypay</name>
     <author>daomul (http://www.jianshu.com/users/1967b163cb61/latest_articles)</author>
     <description>Cordova Plugin to do paything</description>
