@@ -18,6 +18,6 @@ yypay.prototype.pay = function (tradecode,mode, onSuccess, onError) {
 module.exports = new yypay();
 
 });
-if(!cordova.plugins) cordova.plugins = {};
-
-if (!cordova.plugins.yypay) cordova.plugins.yypay = cordova.require("cordova-plugin-yypay.yypay");
+// if(!cordova.plugins) cordova.plugins = {};
+//
+// if (!cordova.plugins.yypay) cordova.plugins.yypay = cordova.require("cordova-plugin-yypay.yypay");
