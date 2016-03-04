@@ -9,7 +9,7 @@
         <engine name="cordova" version=">=5.0.0" /><!-- 插件最低支持的Corodva框架版本，根据实际需求，如第一次可以使用默认的 -->
     </engines>
     <js-module src="www/yypay.js" name="yypay"><!-- 要链接的JS文件，一个文件使用一组<js-module> -->
-        <clobbers target="yypay" />
+        <clobbers target="cordova.plugins.yypay" />
     </js-module>
 
     <!-- 根据不同平台配置不同的原生源文件，下面以IOS为例 -->
